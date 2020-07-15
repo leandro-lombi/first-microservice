@@ -1,7 +1,7 @@
 package com.lombi.leandro.microservice.entity;
 
-@Entity
 public class produto {
+
     private long id;
     private String descricao;
     private String sku;
