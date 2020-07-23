@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/pedido")
 
-public class pedidoController {
+public class PedidoController {
 
     @GetMapping(value = "/")
     @ResponseStatus(HttpStatus.OK)
@@ -20,7 +20,5 @@ public class pedidoController {
         return "Pedido gravado!";
     }
 
-    //springdata
-    //springjpa
     //lombok - diminuidor de
 }
