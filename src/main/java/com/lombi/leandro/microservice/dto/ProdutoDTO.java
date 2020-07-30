@@ -21,6 +21,8 @@ public class ProdutoDTO {
 
     private long profundidade;
 
+    private long largura;
+
     private String fabricante;
 
     private long preco;

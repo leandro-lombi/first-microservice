@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProdutoServiceImpl extends Exception implements ProdutoService {
+public class ProdutoServiceImpl implements ProdutoService {
 
     private ProdutoRepository produtoRepo;
 
@@ -28,8 +28,18 @@ public class ProdutoServiceImpl extends Exception implements ProdutoService {
     @Override
     public Produto get(Long id) {
         final Optional<Produto> produto = produtoRepo.findById(id);
-        //super.verityNotFoundException(produto);
+
         return produto.get();
+    }
+
+    @Override
+    public Produto addOrUpdate(final Produto entity) {
+        return this.produtoRepo.save(entity);
+    }
+
+    @Override
+    public void removeById(Long id) {
+        produtoRepo.deleteById(id);
     }
 
 }

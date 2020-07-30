@@ -28,13 +28,14 @@ public class ProdutoMapper {
         produto.setPeso(produtoDTO.getPeso());
         produto.setAltura(produtoDTO.getAltura());
         produto.setProfundidade(produtoDTO.getProfundidade());
+        produto.setLargura(produtoDTO.getLargura());
         produto.setFabricante(produtoDTO.getFabricante());
         produto.setPreco(produtoDTO.getPreco());
 
         return produto;
     }
 
-    public static ProdutoDTO convertToDTO(final Produto produto){//NOPMD
+    public static ProdutoDTO convertToDTO(final Produto produto){
 
         final ProdutoDTO dto = new ProdutoDTO();
 
@@ -45,6 +46,7 @@ public class ProdutoMapper {
         dto.setPeso(produto.getPeso());
         dto.setAltura(produto.getAltura());
         dto.setProfundidade(produto.getProfundidade());
+        dto.setLargura(produto.getLargura());
         dto.setFabricante(produto.getFabricante());
         dto.setPreco(produto.getPreco());
 

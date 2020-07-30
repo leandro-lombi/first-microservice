@@ -29,6 +29,9 @@ public class Produto {
     @Column(name = "profundidade")
     private long profundidade;
 
+    @Column(name = "largura")
+    private long largura;
+
     @Column(name = "fabricante")
     private String fabricante;
 
