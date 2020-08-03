@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "Produto Controller")
@@ -34,24 +36,23 @@ public class ProdutoController {
         try {
             return ProdutoMapper.convertToDTO(produtoService.get(id));
         } catch (Exception e) {
-            throw new ApiRequestException("Registro não encotrado");
+            throw new ApiRequestException("Registro não encotrado", e);
         }
     }
 
-    @PostMapping()
+    @PostMapping
     @ApiOperation("Adiciona produto")
-    public ProdutoDTO create(@ApiParam(value = "Produto", required = true)
-                             @RequestBody final ProdutoDTO dto) {
-        final Produto produto = ProdutoMapper.convertToEntity(dto);
-        return ProdutoMapper.convertToDTO(produtoService.addOrUpdate(produto));
+    public ResponseEntity<ProdutoDTO> create(@RequestBody ProdutoDTO dto) {
+        Produto produto = produtoService.addOrUpdate(ProdutoMapper.convertToEntity(dto));
+        return new ResponseEntity<>(ProdutoMapper.convertToDTO(produtoService.addOrUpdate(produto)), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @ApiOperation("Atualiza produto")
-    public ProdutoDTO update(@ApiParam(value = "Produto", required = true)
-                             @RequestBody final ProdutoDTO dto) {
-        final Produto produto = ProdutoMapper.convertToEntity(dto);
-        return ProdutoMapper.convertToDTO(produtoService.addOrUpdate(produto));
+    public ResponseEntity<ProdutoDTO> update(@ApiParam(value = "Produto", required = true)
+                                             @RequestBody final ProdutoDTO dto) {
+        Produto produto = produtoService.addOrUpdate(ProdutoMapper.convertToEntity(dto));
+        return new ResponseEntity<>(ProdutoMapper.convertToDTO(produtoService.addOrUpdate(produto)), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")

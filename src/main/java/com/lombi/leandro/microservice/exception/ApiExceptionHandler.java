@@ -14,18 +14,13 @@ public class ApiExceptionHandler {
     @ExceptionHandler(value = {ApiRequestException.class})
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException e) {
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
-        HttpStatus noContent = HttpStatus.NO_CONTENT;
-
-
-        if (e.getMessage() == "No value present"){
-
-        }
+        HttpStatus notFound = HttpStatus.NOT_FOUND;
 
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                (e.getMessage() == "Registro não encotrado" ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST) ,
+                (e.getMessage() == "Registro não encotrado" ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST) ,
                 ZonedDateTime.now(ZoneId.of("Z")));
 
-        return new ResponseEntity<>(apiException, badRequest);
+        return new ResponseEntity<>(apiException, notFound);
     }
 }
